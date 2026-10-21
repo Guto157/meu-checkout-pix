@@ -3,29 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pagar com PIX</title>
+<title>Pague no PIX</title>
 <style>
-body{margin:0;font-family:system-ui;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
-.card{background:#fff;color:#111;padding:32px;border-radius:24px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
-h1{margin:0 0 8px;font-size:24px}p{color:#666;font-size:14px;margin:0 0 24px}
-.pix{background:#f0fdf4;border:2px dashed #16a34a;border-radius:16px;padding:20px;margin-bottom:20px}
-code{display:block;background:#fff;border:1px solid #ddd;padding:12px;border-radius:10px;font-size:11px;word-break:break-all;margin-top:12px;text-align:left}
-button{width:100%;padding:18px;background:#16a34a;color:#fff;border:none;border-radius:14px;font-size:18px;font-weight:900}
-.qrcode{width:200px;height:200px;background:#eee;margin:0 auto 16px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888}
+body{margin:0;font-family:system-ui;background:#020617;color:#fff;display:flex;justify-content:center;padding:20px}
+.card{background:#fff;color:#111;padding:30px;border-radius:22px;width:100%;max-width:380px;text-align:center}
+h1{font-size:22px;margin:0 0 10px}.valor{font-size:32px;font-weight:900;color:#16a34a;margin:10px 0}
+button{width:100%;padding:18px;background:#16a34a;color:#fff;border:none;border-radius:14px;font-size:19px;font-weight:900;cursor:pointer}
+#pixArea{display:none;margin-top:20px}
+#qrcode{width:240px;height:240px;margin:0 auto 15px;border-radius:12px;border:1px solid #eee}
+code{display:block;background:#f0fdf4;border:1px dashed #16a34a;padding:12px;border-radius:10px;font-size:11px;word-break:break-all;margin-top:10px}
 </style>
 </head>
 <body>
-<div class="card">
-<h1>Pague com PIX</h1>
-<p>Escaneie ou copie o código</p>
-<div class="qrcode">QR CODE AQUI</div>
-<div class="pix">
-<strong>PIX Copia e Cola</strong>
-<code id="codigo">00020101021126580014BR.GOV.BCB.PIX0114+55999999999...
-SUA CHAVE PIX VAI AQUI</code>
+<div class="card" id="tela1">
+<h1>Finalizar Compra</h1>
+<div class="valor">R$ 27,00</div>
+<p style="color:#666;font-size:14px">Pagamento instantâneo via PIX</p>
+<button onclick="gerar()">GERAR QR CODE PIX →</button>
+<p style="font-size:11px;color:#888;margin-top:12px">Sem cadastro • Sem e-mail • 1 clique</p>
 </div>
-<button onclick="navigator.clipboard.writeText(document.getElementById('codigo').innerText);this.innerText='COPIADO! ✅';setTimeout(()=>this.innerText='COPIAR CÓDIGO PIX',2000)">COPIAR CÓDIGO PIX</button>
-<p style="margin-top:16px;font-size:11px">Após pagar, envie o comprovante no WhatsApp</p>
+
+<div class="card" id="pixArea">
+<h1>Escaneie para pagar</h1>
+<img id="qrcode" src="">
+<code id="copiaCola"></code>
+<button style="margin-top:15px" onclick="navigator.clipboard.writeText(document.getElementById('copiaCola').innerText);this.innerText='COPIADO ✅'">COPIAR CÓDIGO</button>
+<p style="font-size:12px;color:#666;margin-top:12px">Após pagar, clique aqui: <a href="https://wa.me/55SEUNUMERO" target="_blank">Enviar comprovante no WhatsApp</a></p>
 </div>
-</body>
-</html>
+
+<script>
+// === CONFIGURE AQUI SUA CHAVE ===
+const CHAVE_PIX = "SEU CPF OU TELEFONE OU CHAVE ALEATOR
