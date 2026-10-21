@@ -3,28 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout PIX - Sem Email</title>
+<title>Checkout PIX</title>
 <style>
-body{font-family:system-ui;background:#0f172a;color:#fff;display:flex;justify-content:center;padding:20px;margin:0}
-.card{background:#fff;color:#111;padding:24px;border-radius:16px;width:100%;max-width:400px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-h2{text-align:center;margin:0 0 20px}
-label{font-size:13px;font-weight:bold}
-input{width:100%;padding:13px;margin:6px 0 16px;border:1px solid #ddd;border-radius:10px;box-sizing:border-box;font-size:15px}
-button{width:100%;padding:15px;background:#22c55e;color:white;border:none;border-radius:10px;font-size:17px;font-weight:bold}
-small{display:block;text-align:center;color:#888;margin-top:12px;font-size:11px}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:#0f172a;color:#fff;display:flex;justify-content:center;padding:20px}
+.card{background:#fff;color:#111;padding:28px;border-radius:20px;width:100%;max-width:420px;box-shadow:0 15px 40px rgba(0,0,0,.4)}
+h2{text-align:center;margin:0 0 8px;font-size:22px}p.sub{text-align:center;color:#666;margin:0 0 20px;font-size:13px}
+label{font-size:13px;font-weight:700;display:block;margin-top:4px}input{width:100%;padding:14px;margin:8px 0 14px;border:1px solid #e5e7eb;border-radius:12px;font-size:15px;background:#f9fafb}
+button{width:100%;padding:16px;background:#16a34a;color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:800;cursor:pointer}
+button:active{transform:scale(.98)} .pixbox{display:none;margin-top:20px;padding:16px;background:#f0fdf4;border:2px dashed #16a34a;border-radius:12px;text-align:center}code{word-break:break-all;font-size:12px;display:block;margin-top:10px;background:#fff;padding:10px;border-radius:8px;border:1px solid #ddd}
+small{display:block;text-align:center;color:#888;margin-top:14px;font-size:11px}
 </style>
 </head>
 <body>
 <div class="card">
-<h2>Finalizar Pagamento PIX</h2>
+<h2>Finalizar no PIX</h2>
+<p class="sub">Sem e-mail • Receba no WhatsApp</p>
 <label>Nome completo</label>
-<input placeholder="Seu nome">
-<label>WhatsApp</label>
-<input placeholder="(00) 00000-0000">
+<input id="nome" placeholder="Seu nome completo">
+<label>WhatsApp (com DDD)</label>
+<input id="zap" placeholder="(00) 00000-0000">
 <label>CPF</label>
-<input placeholder="000.000.000-00">
-<button onclick="alert('PIX gerado! Aqui você coloca sua chave PIX depois')">GERAR PIX AGORA</button>
-<small>Pagamento seguro • Não pedimos e-mail</small>
+<input id="cpf" placeholder="000.000.000-00">
+<button onclick="gerar()">GERAR PIX AGORA →</button>
+<div id="pix" class="pixbox">
+<strong>PIX Copia e Cola Gerado!</strong>
+<code id="pixcode">00020126580014BR.GOV.BCB.PIX... (coloque sua chave aqui depois)</code>
+<button style="margin-top:12px;background:#111" onclick="navigator.clipboard.writeText(document.getElementById('pixcode').innerText);alert('Copiado!')">COPIAR CÓDIGO</button>
 </div>
+<small>Pagamento 100% seguro • Liberação imediata</small>
+</div>
+<script>
+function gerar(){
+ const n=document.getElementById('nome').value
+ const z=document.getElementById('zap').value
+ if(!n||!z){alert('Preencha nome e WhatsApp');return}
+ document.getElementById('pix').style.display='block'
+ window.scrollTo(0,document.body.scrollHeight)
+}
+</script>
 </body>
 </html>
