@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout PIX - Sem Email</title>
+<style>
+body{font-family:system-ui;background:#0f172a;color:#fff;display:flex;justify-content:center;padding:20px;margin:0}
+.card{background:#fff;color:#111;padding:24px;border-radius:16px;width:100%;max-width:400px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+h2{text-align:center;margin:0 0 20px}
+label{font-size:13px;font-weight:bold}
+input{width:100%;padding:13px;margin:6px 0 16px;border:1px solid #ddd;border-radius:10px;box-sizing:border-box;font-size:15px}
+button{width:100%;padding:15px;background:#22c55e;color:white;border:none;border-radius:10px;font-size:17px;font-weight:bold}
+small{display:block;text-align:center;color:#888;margin-top:12px;font-size:11px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Finalizar Pagamento PIX</h2>
+<label>Nome completo</label>
+<input placeholder="Seu nome">
+<label>WhatsApp</label>
+<input placeholder="(00) 00000-0000">
+<label>CPF</label>
+<input placeholder="000.000.000-00">
+<button onclick="alert('PIX gerado! Aqui você coloca sua chave PIX depois')">GERAR PIX AGORA</button>
+<small>Pagamento seguro • Não pedimos e-mail</small>
+</div>
+</body>
+</html>
