@@ -3,43 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout PIX</title>
+<title>Pagar com PIX</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:#0f172a;color:#fff;display:flex;justify-content:center;padding:20px}
-.card{background:#fff;color:#111;padding:28px;border-radius:20px;width:100%;max-width:420px;box-shadow:0 15px 40px rgba(0,0,0,.4)}
-h2{text-align:center;margin:0 0 8px;font-size:22px}p.sub{text-align:center;color:#666;margin:0 0 20px;font-size:13px}
-label{font-size:13px;font-weight:700;display:block;margin-top:4px}input{width:100%;padding:14px;margin:8px 0 14px;border:1px solid #e5e7eb;border-radius:12px;font-size:15px;background:#f9fafb}
-button{width:100%;padding:16px;background:#16a34a;color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:800;cursor:pointer}
-button:active{transform:scale(.98)} .pixbox{display:none;margin-top:20px;padding:16px;background:#f0fdf4;border:2px dashed #16a34a;border-radius:12px;text-align:center}code{word-break:break-all;font-size:12px;display:block;margin-top:10px;background:#fff;padding:10px;border-radius:8px;border:1px solid #ddd}
-small{display:block;text-align:center;color:#888;margin-top:14px;font-size:11px}
+body{margin:0;font-family:system-ui;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{background:#fff;color:#111;padding:32px;border-radius:24px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+h1{margin:0 0 8px;font-size:24px}p{color:#666;font-size:14px;margin:0 0 24px}
+.pix{background:#f0fdf4;border:2px dashed #16a34a;border-radius:16px;padding:20px;margin-bottom:20px}
+code{display:block;background:#fff;border:1px solid #ddd;padding:12px;border-radius:10px;font-size:11px;word-break:break-all;margin-top:12px;text-align:left}
+button{width:100%;padding:18px;background:#16a34a;color:#fff;border:none;border-radius:14px;font-size:18px;font-weight:900}
+.qrcode{width:200px;height:200px;background:#eee;margin:0 auto 16px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888}
 </style>
 </head>
 <body>
 <div class="card">
-<h2>Finalizar no PIX</h2>
-<p class="sub">Sem e-mail • Receba no WhatsApp</p>
-<label>Nome completo</label>
-<input id="nome" placeholder="Seu nome completo">
-<label>WhatsApp (com DDD)</label>
-<input id="zap" placeholder="(00) 00000-0000">
-<label>CPF</label>
-<input id="cpf" placeholder="000.000.000-00">
-<button onclick="gerar()">GERAR PIX AGORA →</button>
-<div id="pix" class="pixbox">
-<strong>PIX Copia e Cola Gerado!</strong>
-<code id="pixcode">00020126580014BR.GOV.BCB.PIX... (coloque sua chave aqui depois)</code>
-<button style="margin-top:12px;background:#111" onclick="navigator.clipboard.writeText(document.getElementById('pixcode').innerText);alert('Copiado!')">COPIAR CÓDIGO</button>
+<h1>Pague com PIX</h1>
+<p>Escaneie ou copie o código</p>
+<div class="qrcode">QR CODE AQUI</div>
+<div class="pix">
+<strong>PIX Copia e Cola</strong>
+<code id="codigo">00020101021126580014BR.GOV.BCB.PIX0114+55999999999...
+SUA CHAVE PIX VAI AQUI</code>
 </div>
-<small>Pagamento 100% seguro • Liberação imediata</small>
+<button onclick="navigator.clipboard.writeText(document.getElementById('codigo').innerText);this.innerText='COPIADO! ✅';setTimeout(()=>this.innerText='COPIAR CÓDIGO PIX',2000)">COPIAR CÓDIGO PIX</button>
+<p style="margin-top:16px;font-size:11px">Após pagar, envie o comprovante no WhatsApp</p>
 </div>
-<script>
-function gerar(){
- const n=document.getElementById('nome').value
- const z=document.getElementById('zap').value
- if(!n||!z){alert('Preencha nome e WhatsApp');return}
- document.getElementById('pix').style.display='block'
- window.scrollTo(0,document.body.scrollHeight)
-}
-</script>
 </body>
 </html>
