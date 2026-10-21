@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pague no PIX</title>
 <style>
-body{margin:0;font-family:system-ui;background:#020617;color:#fff;display:flex;justify-content:center;padding:20px}
-.card{background:#fff;color:#111;padding:30px;border-radius:22px;width:100%;max-width:380px;text-align:center}
-h1{font-size:22px;margin:0 0 10px}.valor{font-size:32px;font-weight:900;color:#16a34a;margin:10px 0}
-button{width:100%;padding:18px;background:#16a34a;color:#fff;border:none;border-radius:14px;font-size:19px;font-weight:900;cursor:pointer}
-#pixArea{display:none;margin-top:20px}
-#qrcode{width:240px;height:240px;margin:0 auto 15px;border-radius:12px;border:1px solid #eee}
-code{display:block;background:#f0fdf4;border:1px dashed #16a34a;padding:12px;border-radius:10px;font-size:11px;word-break:break-all;margin-top:10px}
+body{margin:0;background:#0f172a;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:system-ui;padding:20px}
+.card{background:#fff;padding:30px;border-radius:20px;width:100%;max-width:360px;text-align:center}
+button{background:#22c55e;color:#fff;border:0;width:100%;padding:18px;border-radius:12px;font-size:18px;font-weight:800}
+#qr{display:none}
+#qr img{width:240px;margin:20px auto;display:block}
+code{word-break:break-all;font-size:12px;background:#f0fdf4;padding:12px;display:block;border-radius:10px;margin-top:10px;border:1px dashed #22c55e}
 </style>
 </head>
 <body>
-<div class="card" id="tela1">
-<h1>Finalizar Compra</h1>
-<div class="valor">R$ 27,00</div>
-<p style="color:#666;font-size:14px">Pagamento instantâneo via PIX</p>
-<button onclick="gerar()">GERAR QR CODE PIX →</button>
-<p style="font-size:11px;color:#888;margin-top:12px">Sem cadastro • Sem e-mail • 1 clique</p>
+<div class="card">
+<div id="t1">
+<h2>Pague no PIX - R$27</h2>
+<p style="color:#666">Clique para gerar seu QR Code</p>
+<button onclick="gerar()">GERAR QR CODE PIX</button>
 </div>
-
-<div class="card" id="pixArea">
-<h1>Escaneie para pagar</h1>
-<img id="qrcode" src="">
-<code id="copiaCola"></code>
-<button style="margin-top:15px" onclick="navigator.clipboard.writeText(document.getElementById('copiaCola').innerText);this.innerText='COPIADO ✅'">COPIAR CÓDIGO</button>
-<p style="font-size:12px;color:#666;margin-top:12px">Após pagar, clique aqui: <a href="https://wa.me/55SEUNUMERO" target="_blank">Enviar comprovante no WhatsApp</a></p>
+<div id="qr">
+<h2>Escaneie para pagar</h2>
+<img id="img">
+<code id="cod"></code>
+<button style="margin-top:15px;background:#111" onclick="navigator.clipboard.writeText(document.getElementById('cod').innerText);this.innerText='COPIADO!'">COPIAR CÓDIGO</button>
 </div>
-
+</div>
 <script>
-// === CONFIGURE AQUI SUA CHAVE ===
-const CHAVE_PIX = "SEU CPF OU TELEFONE OU CHAVE ALEATOR
+function gerar(){
+const CHAVE = "SUA CHAVE PIX AQUI";
+document.getElementById('cod').innerText = CHAVE;
+document.getElementById('img').src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(CHAVE);
+document.getElementById('t1').style.display='none';
+document.getElementById('qr').style.display='block';
+}
+</script>
+</body>
+</html>
